@@ -54,3 +54,4 @@ asas <- inner_join(games, clubs, by = c("opponent" = "club_name"))
 asas <- asas[,30:31] %>%
   `colnames<-`(c("team", "opponent"))
 games <- cbind(asas, games[,-c(1, 4, 31)])
+rm(asas)
