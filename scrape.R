@@ -40,7 +40,6 @@ scrape <- function(x) {
   `colnames<-`(column) %>%
   filter(!gp == "GP") %>%
   filter(!win_loss == "") %>%
-  filter(!home_away == "@") %>%
   select(-c("blank1", "blank2", "blank3")) %>%
   mutate(team = x)}
 
@@ -55,3 +54,9 @@ asas <- asas[,30:31] %>%
   `colnames<-`(c("team", "opponent"))
 games <- cbind(asas, games[,-c(1, 4, 31)])
 rm(asas)
+
+clubs$gp <- lapply(clubs$club, FUN = function(x)
+  length(
+    which(games$team == x)
+  )
+  )
