@@ -21,5 +21,12 @@ clubs$ga <- sapply(clubs$club, FUN = function(x)
 clubs$gdiff_per <- (clubs$gf - clubs$ga)/clubs$gp
 
 
-m <- matrix(rep(0, 31*31), 31, 31)
-m[,1] <- clubs$gdiff_per
+m <- diag(clubs$gdiff_per, 31, 31)
+
+times_played <- c()
+for (i in clubs$club) times_played <- c(times_played,{
+  length(
+    which(
+      games$opponent[which(
+        games$team == "VAN")] == i))
+})
