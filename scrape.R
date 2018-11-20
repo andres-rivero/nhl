@@ -55,8 +55,3 @@ asas <- asas[,30:31] %>%
 games <- cbind(asas, games[,-c(1, 4, 31)])
 rm(asas)
 
-clubs$gp <- lapply(clubs$club, FUN = function(x)
-  length(
-    which(games$team == x)
-  )
-  )
